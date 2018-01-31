@@ -1,0 +1,14 @@
+public class Combine extends Reducer<IntWritable, Text, IntWritable, Text>
+{
+	public void reduce(IntWritable key, Iterator<Text> values, Context context) throws IOException, InterruptedException
+	{
+
+#Orders the key/value pairs on the key (word count)
+
+		while((values.hasNext()))
+		{
+			context.write(key, values.next());	
+
+		}
+	}
+}
