@@ -1,0 +1,36 @@
+public class Map extends Mapper<Object, Text, IntWritable, Text>
+{
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException 
+    {
+
+#Grabs the key/value pair of each line
+
+        String line = value.toString();
+        StringTokenizer stringTokenizer = new StringTokenizer(line);
+        {
+
+            int number = 999; 
+            String word = "empty";
+
+#Assigns each token to variable ‘word’
+
+            if(stringTokenizer.hasMoreTokens())
+            {
+                String str0= stringTokenizer.nextToken();
+                word = str0.trim();
+            }
+
+#Assigns each count to variable ‘number’
+
+            if(stringTokenizer.hasMoreElements())
+            {
+                String str1 = stringTokenizer.nextToken();
+                number = Integer.parseInt(str1.trim());
+            }
+
+#Outputs the counts as the key and tokens as the value
+
+            context.write(new IntWritable(number), new Text(word));
+        }
+    }
+}
