@@ -64,3 +64,7 @@ https://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/keplersr1
 ## Acknowledgements
 
 Vernica, R., Carey, M. J.,Li, C. (2010). Efficient Parallel Set-Similarity Joins Using MapReduce. Technical report, Department of Computer Science, UC Irvine. http://asterix.ics.uci.edu/pub/sigmod10-p495-vernica-long.pdf
+
+## Licence
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
