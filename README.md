@@ -20,7 +20,13 @@ Note: Use non-distributed methods if data is small (i.e under 5GB)
 
 - Java
 
+- Python
+
 - Linux
+
+- eBay developer key/token
+
+- semantics3 developer key/token
 
 ### Installing
 
@@ -31,6 +37,14 @@ http://hadoop.apache.org/releases.html
 Eclipse IDE download link:
 ```
 https://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/keplersr1
+```
+EBay developer sign up:
+```
+https://developer.ebay.com/signin?return_to=%2Fmy%2Fauth%2F%3Fenv%3Dsandbox%26index%3D0
+```
+Semantics3 sign up:
+```
+https://www.semantics3.com/
 ```
 
 ## Map Reduce Phases
