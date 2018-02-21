@@ -1,0 +1,25 @@
+from semantics3 import Products
+import pandas as pd
+
+sem3 = Products(
+        api_key = 'SEM3F14CDEFDB790C352EA417DCC4D76EBA9',
+        api_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+
+frames = []
+
+myList = range(0,10000)
+for i in myList[::10]:
+    print(i)
+    sem3.products_field('cat_id', '10644')
+    sem3.products_field('geo', 'uk')
+    sem3.products_field('offset', i)
+    results = sem3.get_products()
+    
+    headers_tuple = ['name','ean','price','price_currency']
+    
+    df = pd.DataFrame(results['results'])
+    sliced = df[headers_tuple]    
+    frames.append(sliced)
+    
+df_final = pd.concat(frames)
+print(df_final)
