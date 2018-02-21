@@ -24,9 +24,9 @@ Note: Use non-distributed methods if data is small (i.e under 5GB)
 
 - Linux
 
-- eBay developer key/token
+- EBay developer key/token
 
-- semantics3 developer key/token
+- Semantics3 developer key/token
 
 ### Installing
 
@@ -70,6 +70,7 @@ https://www.semantics3.com/
 ### Scalability Testing vs Python
 
 ![graph](https://user-images.githubusercontent.com/35964377/36489196-4a29e34e-171d-11e8-8932-f30317c9b68d.PNG)
+- Evidence of greater scalability, however needs testing with larger data
 
 ## Authors
 
