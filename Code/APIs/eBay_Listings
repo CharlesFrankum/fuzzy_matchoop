@@ -1,0 +1,50 @@
+                                                                                                                             from ebaysdk.finding import Connection as finding
+from bs4 import BeautifulSoup
+import pandas as pd
+import numpy as np
+
+def flatten(lst):
+   for x in lst:
+      if isinstance(x, list):
+         for y in flatten(x):
+            yield y           
+      else:
+         yield x
+
+categoryId = ['20628','20635','20637','20652','20687','20696','25464','36027','71237','177009','177014']
+
+for num in range(len(categoryId)):
+    ID = categoryId[num]
+    print(ID)
+    full_dict = {}
+    result = {}
+    
+    for i in range(1,100):
+        print(i)
+        api = finding(siteid='EBAY-GB',appid='CharlesF-xxxxxxxxxxx',config_file=None)
+    
+        response = api.execute('findItemsAdvanced', {'categoryId': ' '+ID, 
+        'itemFilter': [{'name':'ListingType', 'value':'Auction'}, {'name':'Condition', 'value':'1000'}], 
+        'paginationInput': {'entriesPerPage': '100','pageNumber': ' '+str(i)}})    
+        
+        soup = BeautifulSoup(response.content, 'lxml')
+    
+        items = soup.find_all('item')
+    
+        headers_tuple = ('categoryid','itemid','title','postalcode','location','shippingservicecost','currentprice','watchcount','bidcount','viewitemurl','timeleft')
+        
+        data_dict = {}
+        
+        for obj in headers_tuple:
+            x = [element.text for element in soup.find_all(obj)]
+            data_dict[obj] = x
+        for key in (data_dict.keys() | full_dict.keys()):
+            if key in data_dict: result.setdefault(key, []).append(data_dict[key])
+            if key in full_dict: result.setdefault(key, []).append(full_dict[key])
+    
+    final_dict = {k: list(flatten(v)) for k, v in result.items()}
+    df = pd.DataFrame.from_dict(final_dict, orient='index')
+    df = df.T
+    df['currentprice'].replace('', np.nan, inplace=True)
+    df.dropna(subset=['currentprice'], inplace=True)
+    print(df)                                                                                                                           
